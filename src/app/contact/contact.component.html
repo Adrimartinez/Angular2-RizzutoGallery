@@ -1,0 +1,37 @@
+ç
+<main>
+    <div class="page-title-mobile"><h1>Contact</h1></div>
+    <div class="view-cont">
+        <div class="item first">
+        </div>
+        <div class="item center" *ngIf="site">
+            <div class="list-type-2" [innerHTML]="site.contacts.description">
+
+            </div>
+            <div class="list-type-2">
+                <div class="txt-center">
+                    <h5>Newsletter</h5>
+                    <p>L'indirizzo al quale desideri ricevere le email.</p>
+                    <p>Indirizzo email</p>
+                </div>
+                <form class="newsletter" action="">
+                    <input class="email-input" name="LastName" value="" type="text"><br>
+                    <div class="text-box"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis
+                        ac libero sit amet aliquet. Quisque varius lacus a volutpat condimentum. Sed vel lobortis
+                        ligula. Aliquam id porttitor massa. Suspendisse interdum justo in blandit hendrerit. Vestibulum
+                        ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse tempor,
+                        dui eget posuere bibendum, massa ante suscipit lorem, at ultrices felis lectus a augue. Proin
+                        consectetur velit eget nisi ultricies eleifend. Curabitur semper at tortor id sollicitudin.
+                        Maecenas commodo iaculis justo nec sodales. </p></div>
+                    <div class="flex-row-v-align"><input name="privacypolicy" value="" checked="" type="checkbox">
+                        <span>Privacy - Acconsento al trattamento dei miei dati personali(Decreto Legislativo 196 del 30/Giugno/2003)</span>
+                    </div>
+                    <input value="Submit" type="submit">
+                </form>
+
+            </div>
+        </div>
+        <div class="item third">
+        </div>
+    </div>
+</main>

@@ -1,0 +1,171 @@
+<div class="main-container">
+    <div class="page-container">
+    <header class="header small">
+        <div class="header-cont">
+            <nav class="navbar-cont">
+                <div class="top-nav">
+                    <div>
+                        <a class="item" routerLink="/{{lang}}/contact"><span>cookie</span></a>
+                        <span class="item">/</span>
+                        <a class="item" routerLink="/{{lang}}/contact"><span>privacy policy</span></a>
+                    </div>
+                    <div>
+                        <a class="item" (click)="changeLang('it')"><span>IT</span></a>
+                        <a class="item" (click)="changeLang('en')"><span>EN</span></a>
+                    </div>
+                </div>
+                <div class="brand"><a routerLink="/{{lang}}/home"><span>RIZZUTOGALLERY</span></a></div>
+                <div class="menu">
+                    <ul id="" class="item">
+                        <a routerLink="/{{lang}}/exhibitions" routerLinkActive="active">
+                            <div class="title">
+                                <span>{{translation[lang].mainMenu.exhibitions}}</span>
+                            </div>
+                        </a>
+                        <div class="sub-menu">
+                            <li>
+                                <a routerLink="/{{lang}}/exhibitions/current" routerLinkActive="active"><span>{{translation[lang].mainMenu.current}}</span></a>
+                            </li>
+                            <li>
+                                <a routerLink="/{{lang}}/exhibitions/future" routerLinkActive="active"><span>{{translation[lang].mainMenu.upcomming}}</span></a>
+                            </li>
+                            <li>
+                                <a routerLink="/{{lang}}/exhibitions/past" routerLinkActive="active"><span>{{translation[lang].mainMenu.past}}</span></a>
+                            </li>
+                            <li>
+                                <a routerLink="/{{lang}}/exhibitions/all" routerLinkActive="active"><span>{{translation[lang].mainMenu.all}}</span></a>
+                            </li>
+                        </div>
+                    </ul>
+                    <ul id="" class="item">
+                        <div class="title">
+                            <a routerLink="/{{lang}}/artists" routerLinkActive="active"> <span>{{translation[lang].mainMenu.artists}}</span></a>
+                            <div class="sub-menu">
+                                <li>
+                                    <a routerLink="/{{lang}}/artists/1" routerLinkActive="active"><span>{{translation[lang].mainMenu.represented}}</span></a>
+                                </li>
+                                <li>
+                                    <a routerLink="/{{lang}}/artists/2" routerLinkActive="active"><span>{{translation[lang].mainMenu.exhibited}}</span></a>
+                                </li>
+
+                                <li>
+                                    <a routerLink="/{{lang}}/artists/0" routerLinkActive="active"><span>{{translation[lang].mainMenu.all}}</span></a>
+                                </li>
+                            </div>
+                        </div>
+
+                    </ul>
+                    <ul id="" class="item">
+                        <div class="title">
+                            <a routerLink="/{{lang}}/news" routerLinkActive="active"> <span>{{translation[lang].mainMenu.news}}</span></a>
+                        </div>
+                    </ul>
+                    <ul id="" class="item">
+                        <div class="title">
+                            <a routerLink="/{{lang}}/about" routerLinkActive="active"> <span>{{translation[lang].mainMenu.aboutus}}</span></a>
+                        </div>
+
+                    </ul>
+                    <ul id="" class="item">
+                        <div class="title">
+                            <a routerLink="/{{lang}}/contact" routerLinkActive="active"> <span>{{translation[lang].mainMenu.contact}}</span></a>
+                        </div>
+                    </ul>
+
+
+                </div>
+                <div class="toggle-btn">=</div>
+                <div class="mobile-main-menu">
+                    <div class="container" style="display: none;">
+
+                        <ul id="" class="item">
+                            <div class="title">
+                                <a routerLink="/{{lang}}/exhibitions" routerLinkActive="active"> <span>{{translation[lang].mainMenu.exhibitions}}</span></a>
+                            </div>
+                            <span class="sub-menu-toggle">+</span>
+                            <div class="sub-menu">
+                                <li>
+                                    <a routerLink="/{{lang}}/exhibitions/current" routerLinkActive="active"><span>{{translation[lang].mainMenu.current}}</span></a>
+                                </li>
+                                <li>
+                                    <a routerLink="/{{lang}}/exhibitions/future" routerLinkActive="active"><span>{{translation[lang].mainMenu.upcomming}}</span></a>
+                                </li>
+                                <li>
+                                    <a routerLink="/{{lang}}/exhibitions/past" routerLinkActive="active"><span>{{translation[lang].mainMenu.past}}</span></a>
+                                </li>
+                                <li>
+                                    <a routerLink="/{{lang}}/exhibitions/all" routerLinkActive="active"><span>{{translation[lang].mainMenu.all}}</span></a>
+                                </li>
+                            </div>
+                        </ul>
+                        <ul id="" class="item">
+                            <div class="title">
+                                <a routerLink="/{{lang}}/artists" routerLinkActive="active"> <span>{{translation[lang].mainMenu.artists}}</span></a>
+                            </div>
+
+                        </ul>
+                        <ul id="" class="item">
+                            <div class="title">
+                                <a routerLink="/{{lang}}/news" routerLinkActive="active"> <span>{{translation[lang].mainMenu.news}}</span></a>
+                            </div>
+                        </ul>
+                        <ul id="" class="item">
+                            <div class="title">
+                                <a routerLink="/{{lang}}/about" routerLinkActive="active"> <span>{{translation[lang].mainMenu.aboutus}}</span></a>
+                            </div>
+                        </ul>
+                        <ul id="" class="item">
+                            <div class="title">
+                                <a routerLink="/{{lang}}/contact" routerLinkActive="active"> <span>{{translation[lang].mainMenu.contact}}</span></a>
+                            </div>
+                        </ul>
+                        <hr>
+                        <ul class="item">
+                            <div>
+                                <li>
+                                    <a routerLink="/{{lang}}/contact"
+                                       routerLinkActive="active"><span>cookie/privacy policy</span></a>
+                                </li>
+
+                            </div>
+                        </ul>
+                        <ul id="" class="item">
+                            <div class="title">
+                                <a href="#"> <span>language</span></a>
+                            </div>
+                            <span class="sub-menu-toggle">+</span>
+                            <div class="sub-menu">
+                                <li>
+                                    <a (click)="changeLang('it')" routerLink="/it/home"><span>IT</span></a>
+                                </li>
+                                <li>
+                                    <a (click)="changeLang('en')" routerLink="/en/home"><span>EN</span></a>
+                                </li>
+
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!--<div class="social">
+                <div class="container">
+                    <div class="item">
+                        <a href="https://it.linkedin.com/in/giovanni-rizzuto-b524b810" target="_blank"><i
+                                class="fa fa-linkedin-square"></i></a>
+                    </div>
+                    <div class="item">
+                        <a href="https://twitter.com/giovannirizzuto?lang=it" target="_blank"><i
+                                class="fa  fa-twitter"></i></a>
+                    </div>
+                    <div class="item">
+                        <a href="https://it-it.facebook.com/rizzutogallery/" target="_blank"><i
+                                class="fa fa-facebook"></i></a>
+                    </div>
+
+                </div>
+            </div>-->
+        </div>
+    </header>
+    <router-outlet></router-outlet>
+    </div>
+</div>

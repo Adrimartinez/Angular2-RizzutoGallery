@@ -1,0 +1,39 @@
+<main>
+    <div class="view-cont my-gallery">
+        <div class="item first" *ngFor="let exhibition of exhibitions">
+            <div class="toggle-btn">=</div>
+            <div class="fixed-sidebar">
+                <h2>{{exhibition.title}}</h2>
+                <span>{{exhibition.exhibition_cover.start}}-{{exhibition.exhibition_cover.end}}</span>
+                <div class="side-menu">
+                    <ul>
+                        <li><a routerLinkActive="active" routerLink="detail/{{exhibition.id}}">{{translation[lang].exhibitionMenu.exhibitionscover}}</a>
+                        </li>
+                        <li><a routerLinkActive="active" routerLink="views/{{exhibition.id}}">{{translation[lang].exhibitionMenu.installationviews}}</a>
+                        </li>
+                        <li><a routerLinkActive="active" routerLink="works/{{exhibition.id}}">{{translation[lang].exhibitionMenu.exhibitedworks}}
+                            ({{exhibition.exhibited_works.length}})</a>
+                        </li>
+                        <li><a routerLinkActive="active" routerLink="release/{{exhibition.id}}">Files</a>
+                        </li>
+                        <li>
+                            <div *ngIf="exhibition.artists.length == 1">
+                                <a routerLinkActive="active"
+                                   routerLink="/{{lang}}/artist/detail/{{exhibition.artists[0].id}}">{{translation[lang].exhibitionMenu.artistpage}}
+                                </a>
+                            </div>
+                            <div *ngIf="exhibition.artists.length > 1">
+                                <a routerLinkActive="active" routerLink="artists/{{exhibition.id}}">{{translation[lang].exhibitionMenu.artists}}
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <router-outlet></router-outlet>
+        <div class="item third">
+        </div>
+    </div>
+</main>

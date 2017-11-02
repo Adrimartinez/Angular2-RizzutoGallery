@@ -1,0 +1,15 @@
+<main>
+    <div class="page-title-mobile"><h1>News</h1></div>
+    <div class="gallery-tabs">
+        <div *ngFor="let new of news" class="item">
+            <div class="img-crop"><img src="{{new.exhibition_cover.thumbnail}}"></div>
+            <div class="description">
+                <p [innerHTML]="new.exhibition_cover.start"></p>
+                <h3 [innerHTML]="new.title"></h3>
+                <p *ngFor="let artist of new.exhibition_cover.curated_by" [innerHTML]="artist.name"></p>
+                <p [innerHTML]="new.exhibition_cover.description | slice:0:150"></p>
+            </div>
+            <span class="button"><a routerLink="/{{lang}}/new/detail/{{new.id}}">SEE</a></span>
+        </div>
+    </div>
+</main>

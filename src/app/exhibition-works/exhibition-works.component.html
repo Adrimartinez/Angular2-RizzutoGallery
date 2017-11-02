@@ -1,0 +1,166 @@
+<main>
+    <div class="view-cont my-gallery">
+        <div class="title-date" *ngFor="let exhibition of exhibitions">
+            <h2>{{exhibition.title}}</h2>
+            <p>{{exhibition.exhibition_cover.start}}-{{exhibition.exhibition_cover.end}}</p>
+        </div>
+        <div class="mobile-page-menu" *ngFor="let exhibition of exhibitions">
+            <ul>
+                <li><a routerLinkActive="active" routerLink="/{{lang}}/exhibition/detail/{{exhibition.id}}">{{translation[lang].exhibitionMobMenu.exhibitionscover}}</a>
+                </li>
+                <li><a routerLinkActive="active" routerLink="/{{lang}}/exhibition/views/{{exhibition.id}}">{{translation[lang].exhibitionMobMenu.installationviews}}</a>
+                </li>
+                <li><a routerLinkActive="active" routerLink="/{{lang}}/exhibition/works/{{exhibition.id}}">{{translation[lang].exhibitionMobMenu.exhibitedworks}}</a>
+                </li>
+                <li><a routerLinkActive="active" routerLink="/{{lang}}/exhibition/release/{{exhibition.id}}">{{translation[lang].exhibitionMobMenu.files}}</a>
+                </li>
+                <li>
+                    <div *ngIf="exhibition.artists.length == 1">
+                        <a routerLinkActive="active"
+                           routerLink="/{{lang}}/artist/detail/{{exhibition.artists[0].id}}">{{translation[lang].exhibitionMobMenu.artistpage}}
+                        </a>
+                    </div>
+                    <div *ngIf="exhibition.artists.length > 1">
+                        <a routerLinkActive="active" routerLink="/{{lang}}/exhibition/artists/{{exhibition.id}}">{{translation[lang].exhibitionMobMenu.artists}}
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="item first" *ngFor="let exhibition of exhibitions">
+            <div class="toggle-btn">=</div>
+            <div class="fixed-sidebar">
+                <div class="side-menu">
+                    <ul>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/exhibition/detail/{{exhibition.id}}">{{translation[lang].exhibitionMenu.exhibitionscover}}</a>
+                        </li>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/exhibition/views/{{exhibition.id}}">{{translation[lang].exhibitionMenu.installationviews}}</a>
+                        </li>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/exhibition/works/{{exhibition.id}}">{{translation[lang].exhibitionMenu.exhibitedworks}}
+                            ({{exhibition.exhibited_works.length}})</a>
+                        </li>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/exhibition/release/{{exhibition.id}}">Files</a>
+                        </li>
+                        <li>
+                            <div *ngIf="exhibition.artists.length == 1">
+                                <a routerLinkActive="active"
+                                   routerLink="/{{lang}}/artist/detail/{{exhibition.artists[0].id}}">{{translation[lang].exhibitionMenu.artistpage}}
+                                </a>
+                            </div>
+                            <div *ngIf="exhibition.artists.length > 1">
+                                <a routerLinkActive="active"
+                                   routerLink="/{{lang}}/exhibition/artists/{{exhibition.id}}">{{translation[lang].exhibitionMenu.artists}}
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div #loop class="item center" *ngFor="let exhibition of exhibitions">
+
+            <div *ngFor="let info of exhibition.exhibited_works; let i=index">
+                <div class="img-crop" >
+                    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                        <a class="pswp_img_link" href="{{info.image}}" itemprop="contentUrl" attr.data-size="{{info.image_size.width}}x{{info.image_size.height}}">
+                            <img src="{{info.image}}" itemprop="thumbnail" alt="Colorful Feldberg II (STEFFEN EGLY)"/>
+                        </a>
+                        <figcaption itemprop="caption description" [innerHTML]="info.image_desc">
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="caption">
+                    <div>
+                        <span><a style="color: black;" (click)="runFacebook(i+1)" href=""><i class="fa fa-facebook"></i></a> <share-container
+                                direction="horizontal"
+                                [textEnabled]="false"
+                                [expandable]="false"
+                                [properties]="{
+                                        title: info.image_desc,
+                                        description: info.image_desc,
+                                        image: info.image,
+                                        via: ''
+                                        }"
+                                [platforms]="['twitter','pinterest']">
+                    </share-container>  </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item third">
+        </div>
+    </div>
+</main>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element, as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+        <!-- don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<style>
+    .caption-social a {
+        padding: 0 !important;
+    }
+
+</style>

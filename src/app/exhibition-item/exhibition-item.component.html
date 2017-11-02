@@ -1,0 +1,24 @@
+<div class="page-container">
+    <main>
+        <div class="page-title-mobile"><h1>Exhibitions</h1></div>
+        <div class="gallery-tabs">
+            <div *ngFor="let exhibition of exhibitions" class="item">
+                <div class="img-crop">
+                <a routerLink="/{{lang}}/exhibition/detail/{{exhibition.id}}">
+
+                        <img src="{{exhibition.exhibition_cover.thumbnail}}">
+
+                </a>
+                </div>
+                <div class="description">
+                    <h3>{{exhibition.title}}</h3>
+                    <p *ngFor="let artist of exhibition.exhibition_cover.curated_by" [innerHTML]="artist.name"></p>
+                    <span [innerHTML]="exhibition.exhibition_cover.description | slice:0:150"> ...</span>
+                </div>
+                <a class="button" routerLink="/{{lang}}/exhibition/detail/{{exhibition.id}}">
+                    <span>SEE</span></a>
+            </div>
+        </div>
+    </main>
+</div>
+

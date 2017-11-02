@@ -1,0 +1,34 @@
+<main>
+    <div class="item center">
+
+        <div class="list-index">
+            <div *ngIf="this.showRep" class="item">
+                <h3>RAPRESENTED ARTISTS</h3>
+                <ul>
+                    <li *ngFor="let artist of artists">
+                        <a *ngIf="artist.represented_artists" routerLink="/{{lang}}/artist/detail/{{artist.id}}"
+                           [innerHTML]="setName(artist.artist_cover.first_name, artist.artist_cover.last_name)"></a>
+                    </li>
+                </ul>
+            </div>
+            <div *ngIf="showEx" class="item">
+                <h3>EXHIBITED ARTISTS</h3>
+                <ul>
+                    <li *ngFor="let artist of artists;  let index=index;">
+                        <a *ngIf="index % 2 == 0 && artist.exhibited_artists"
+                           routerLink="/{{lang}}/artist/detail/{{artist.id}}"
+                           [innerHTML]="setName(artist.artist_cover.first_name, artist.artist_cover.last_name)"></a>
+                    </li>
+                </ul>
+                <ul>
+                    <li *ngFor="let artist of artists;  let index=index;">
+                        <a *ngIf="index % 2 == 1 && artist.exhibited_artists"
+                           routerLink="/{{lang}}/artist/detail/{{artist.id}}"
+                           [innerHTML]="setName(artist.artist_cover.first_name, artist.artist_cover.last_name)"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</main>

@@ -1,0 +1,60 @@
+<main>
+    <div class="view-cont my-gallery" *ngFor="let note of news">
+        <div class="title-date">
+            <h2 [innerHTML]="note.title"></h2>
+            <p>{{note.exhibition_cover.start}}/{{note.exhibition_cover.end}}</p>
+        </div>
+        <div class="mobile-page-menu">
+            <ul>
+                <li><a routerLinkActive="active" routerLink="/{{lang}}/new/detail/{{note.id}}">{{translation[lang].exhibitionMobMenu.exhibitionscover}}</a>
+                </li>
+                <li><a routerLinkActive="active" routerLink="/{{lang}}/new/views/{{note.id}}">{{translation[lang].exhibitionMobMenu.installationviews}}</a>
+                </li>
+                <li><a routerLinkActive="active" routerLink="/{{lang}}/new/works/{{note.id}}">{{translation[lang].exhibitionMobMenu.exhibitedworks}}</a>
+                </li>
+                <li><a routerLinkActive="active" routerLink="/{{lang}}/new/release/{{note.id}}">{{translation[lang].exhibitionMobMenu.files}}</a>
+                </li>
+                <li>
+                    <div *ngIf="note.artists.length == 1">
+                        <a routerLinkActive="active"
+                           routerLink="/{{lang}}/artist/detail/{{note.artists[0].id}}">{{translation[lang].exhibitionMobMenu.artistpage}}
+                        </a>
+                    </div>
+                    <div *ngIf="note.artists.length > 1">
+                        <a routerLinkActive="active" routerLink="/{{lang}}/new/artists/{{note.id}}">{{translation[lang].exhibitionMobMenu.artists}}
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="item first">
+            <div class="toggle-btn">=</div>
+            <div class="fixed-sidebar">
+                <div class="side-menu">
+                    <ul>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/new/detail/{{note.id}}">exhibition's
+                            cover</a></li>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/new/view/{{note.id}}">installation
+                            views</a></li>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/new/works/{{note.id}}">exhibited
+                            works</a></li>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/new/release/{{note.id}}">press
+                            release</a></li>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/artist/detail/{{note.artists[0].id}}">artist
+                            page</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="item center">
+            <h1>FILES</h1>
+            <div class="list-type-2" *ngFor="let att of note.exhibition_cover.attachments">
+                <h5 class="dwn-link"><i class="fa fa-download" aria-hidden="true"></i>
+                    <a href="{{att.url}}" download="">Download - {{att.description}}</a>
+                </h5>
+            </div>
+        </div>
+        <div class="item third">
+        </div>
+    </div>
+</main>

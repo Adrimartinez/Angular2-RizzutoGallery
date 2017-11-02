@@ -1,0 +1,95 @@
+<main>
+    <div class="view-cont my-gallery">
+        <div class="title-date" *ngFor="let new of news">
+            <h2 [innerHTML]="new.title"></h2>
+            <p>{{new.exhibition_cover.start}}/{{new.exhibition_cover.end}}</p>
+        </div>
+        <div class="mobile-page-menu" *ngFor="let new of news">
+            <ul>
+                <li><a routerLinkActive="active" routerLink="/{{lang}}/new/detail/{{new.id}}">{{translation[lang].exhibitionMobMenu.exhibitionscover}}</a>
+                </li>
+                <li><a routerLinkActive="active" routerLink="/{{lang}}/new/views/{{new.id}}">{{translation[lang].exhibitionMobMenu.installationviews}}</a>
+                </li>
+                <li><a routerLinkActive="active" routerLink="/{{lang}}/new/works/{{new.id}}">{{translation[lang].exhibitionMobMenu.exhibitedworks}}</a>
+                </li>
+                <li><a routerLinkActive="active" routerLink="/{{lang}}/new/release/{{new.id}}">{{translation[lang].exhibitionMobMenu.files}}</a>
+                </li>
+                <li>
+                    <div *ngIf="new.artists.length == 1">
+                        <a routerLinkActive="active"
+                           routerLink="/{{lang}}/artist/detail/{{new.artists[0].id}}">{{translation[lang].exhibitionMobMenu.artistpage}}
+                        </a>
+                    </div>
+                    <div *ngIf="new.artists.length > 1">
+                        <a routerLinkActive="active" routerLink="/{{lang}}/new/artists/{{new.id}}">{{translation[lang].exhibitionMobMenu.artists}}
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="item first" *ngFor="let new of news">
+            <div class="toggle-btn">=</div>
+            <div class="fixed-sidebar">
+                <div class="side-menu">
+                    <ul>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/new/detail/{{new.id}}">exhibition's
+                            cover</a></li>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/new/view/{{new.id}}">installation
+                            views</a></li>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/new/works/{{new.id}}">exhibited
+                            works</a>
+                        </li>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/new/release/{{new.id}}">press
+                            release</a>
+                        </li>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/artist/detail/{{new.artists[0].id}}">artist
+                            page</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="item center" *ngFor="let new of news">
+            <div class="img-crop"><img src="{{new.exhibition_cover.image}}">
+                <div class="caption">
+                    <div><span
+                            [innerHTML]="new.title"></span>
+                        <span> <a style="color: black;" (click)="runFacebook()" href=""><i
+                                class="fa fa-facebook"></i></a>
+                                    <share-container
+                                            direction="horizontal"
+                                            [textEnabled]="false"
+                                            [expandable]="false"
+                                            [properties]="{
+                                            title: new.title,
+                                            description: new.exhibition_cover.description,
+                                            image: new.exhibition_cover.image,
+                                            via: ''
+                                            }"
+                                            [platforms]="['twitter','pinterest']">
+                    </share-container>
+                                </span>
+                    </div>
+                    <p>Exhibition views - Rizzutogallery - 2016</p>
+                </div>
+            </div>
+            <div class="detail">
+                <p *ngFor="let artist of new.exhibition_cover.curated_by"
+                   [innerHTML]="'Curated by: '+artist.name"></p>
+                <p [innerHTML]="'Opening: '+new.exhibition_cover.opening"></p>
+                <p [innerHTML]="'Location: '+new.exhibition_cover.location"></p>
+                <p [innerHTML]="'When: '+new.exhibition_cover.when"></p>
+            </div>
+            <div class="description">
+                <p [innerHTML]="new.exhibition_cover.description"></p>
+            </div>
+        </div>
+        <div class="item third">
+        </div>
+    </div>
+</main>
+
+<style>
+    .caption {
+        margin-top: -5px;
+    }
+</style>

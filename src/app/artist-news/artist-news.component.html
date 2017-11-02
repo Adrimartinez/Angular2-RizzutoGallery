@@ -1,0 +1,69 @@
+<div class="main-container">
+    <div class="page-container">
+        <main>
+            <div class="view-cont">
+                <div class="item first" *ngFor="let artist of artists">
+                    <div class="title-date" >
+                        <h2 [innerHTML]="setName(artist.artist_cover.first_name, artist.artist_cover.last_name)"></h2>
+                        <p style="font-style: italic;"
+                           [innerHTML]="artist.artist_cover.birth_place+', '+artist.artist_cover.birth_nation+', '+artist.artist_cover.birth_date">
+
+                        </p>
+                    </div>
+                    <div class="mobile-page-menu">
+                        <ul>
+                            <li><a routerLinkActive="active" routerLink="/{{lang}}/artist/detail/{{artist.id}}">{{translation[lang].artistMobMenu.artistcover}}</a>
+                            </li>
+                            <li><a routerLinkActive="active" routerLink="/{{lang}}/artist/works/{{artist.id}}">{{translation[lang].artistMobMenu.selectedWorks}}</a>
+                            </li>
+                            <li><a routerLinkActive="active" routerLink="/{{lang}}/artist/exhibition/{{artist.id}}">{{translation[lang].artistMobMenu.exhibition}}</a>
+                            </li>
+                            <li><a routerLinkActive="active" routerLink="/{{lang}}/artist/bio/{{artist.id}}">{{translation[lang].artistMobMenu.biography}}</a>
+                            </li>
+                            <li><a routerLinkActive="active" routerLink="/{{lang}}/artist/news/{{artist.id}}">{{translation[lang].artistMobMenu.news}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="toggle-btn">=</div>
+                    <div class="fixed-sidebar">
+                       <div class="side-menu">
+                            <ul>
+                                <li><a routerLinkActive="active" routerLink="/{{lang}}/artist/detail/{{artist.id}}">{{translation[lang].artistMenu.artistscover}}</a>
+                                </li>
+                                <li><a routerLinkActive="active" routerLink="/{{lang}}/artist/works/{{artist.id}}">{{translation[lang].artistMenu.selectedworks}}
+                                    ({{artist.selected_works.length}})</a></li>
+                                <li><a routerLinkActive="active" routerLink="/{{lang}}/artist/exhibition/{{artist.id}}">{{translation[lang].artistMenu.exhibition}}</a>
+                                </li>
+                                <li><a routerLinkActive="active" routerLink="/{{lang}}/artist/bio/{{artist.id}}">{{translation[lang].artistMenu.biography}}</a>
+                                </li>
+                                <li><a routerLinkActive="active" routerLink="/{{lang}}/artist/news/{{artist.id}}">{{translation[lang].artistMenu.news}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="item center">
+                    <div class="list-type-3">
+                        <ul>
+                            <li *ngFor="let new of news">
+                                <a routerLink="/{{lang}}/new/detail/{{new.id}}"><img src="{{new.exhibition_cover.thumbnail}}"></a>
+                                <div><h5 [innerHTML]="new.exhibition_cover.start"></h5><span
+                                        [innerHTML]="new.title"></span><span
+                                        [innerHTML]="new.exhibition_cover.description | slice:0:150"></span>
+                                </div>
+                                <span class="button"><a
+                                        routerLink="/{{lang}}/new/detail/{{new.id}}">SEE</a></span>
+                            </li>
+                            <hr>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="item third">
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+

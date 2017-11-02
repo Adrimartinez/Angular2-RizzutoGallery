@@ -1,0 +1,34 @@
+<div class="main-container">
+    <div class="page-container">
+        <main>
+            <div class="view-cont">
+                <div class="item first">
+                    <div class="toggle-btn">=</div>
+                    <div class="fixed-sidebar" *ngFor="let artist of artists">
+                        <h2 [innerHTML]="setName(artist.artist_cover.first_name, artist.artist_cover.last_name)"></h2>
+                        <p style="font-style: italic;"
+                           [innerHTML]="artist.artist_cover.birth_place+', '+artist.artist_cover.birth_nation+', '+artist.artist_cover.birth_date"></p>
+                        <div class="side-menu">
+                            <ul>
+                                <li><a routerLinkActive="active" routerLink="detail/{{artist.id}}">{{translation[lang].artistMenu.artistscover}}</a>
+                                </li>
+                                <li><a routerLinkActive="active" routerLink="works/{{artist.id}}">{{translation[lang].artistMenu.selectedworks}}
+                                    ({{artist.selected_works.length}})</a></li>
+                                <li><a routerLinkActive="active" routerLink="exhibition/{{artist.id}}">{{translation[lang].artistMenu.exhibition}}</a>
+                                </li>
+                                <li><a routerLinkActive="active" routerLink="bio/{{artist.id}}">{{translation[lang].artistMenu.biography}}</a>
+                                </li>
+                                <li><a routerLinkActive="active" routerLink="news/{{artist.id}}">{{translation[lang].artistMenu.news}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <router-outlet></router-outlet>
+                <div class="item third">
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+

@@ -1,0 +1,185 @@
+<main>
+    <div class="view-cont my-gallery">
+        <div class="title-date" *ngFor="let new of exhibitions">
+            <h2 [innerHTML]="new.title"></h2>
+            <p>{{new.exhibition_cover.start}}/{{new.exhibition_cover.end}}</p>
+        </div>
+        <div class="mobile-page-menu" *ngFor="let new of exhibitions">
+            <ul>
+                <li><a routerLinkActive="active" routerLink="/{{lang}}/new/detail/{{new.id}}">{{translation[lang].exhibitionMobMenu.exhibitionscover}}</a>
+                </li>
+                <li><a routerLinkActive="active" routerLink="/{{lang}}/new/views/{{new.id}}">{{translation[lang].exhibitionMobMenu.installationviews}}</a>
+                </li>
+                <li><a routerLinkActive="active" routerLink="/{{lang}}/new/works/{{new.id}}">{{translation[lang].exhibitionMobMenu.exhibitedworks}}</a>
+                </li>
+                <li><a routerLinkActive="active" routerLink="/{{lang}}/new/release/{{new.id}}">{{translation[lang].exhibitionMobMenu.files}}</a>
+                </li>
+                <li>
+                    <div *ngIf="new.artists.length == 1">
+                        <a routerLinkActive="active"
+                           routerLink="/{{lang}}/artist/detail/{{new.artists[0].id}}">{{translation[lang].exhibitionMobMenu.artistpage}}
+                        </a>
+                    </div>
+                    <div *ngIf="new.artists.length > 1">
+                        <a routerLinkActive="active" routerLink="/{{lang}}/new/artists/{{new.id}}">{{translation[lang].exhibitionMobMenu.artists}}
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="item first" *ngFor="let new of exhibitions">
+            <div class="toggle-btn">=</div>
+            <div class="fixed-sidebar">
+                <div class="side-menu">
+                    <ul>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/new/detail/{{new.id}}">exhibition's
+                            cover</a></li>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/new/view/{{new.id}}">installation
+                            views</a></li>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/new/works/{{new.id}}">exhibited
+                            works</a></li>
+                        <li><a routerLinkActive="active" routerLink="/{{lang}}/new/release/{{new.id}}">press
+                            release</a></li>
+                        <li><a routerLinkActive="active"
+                               routerLink="/{{lang}}/artist/detail/{{new.artists[0].id}}">artist page</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="item center" *ngFor="let exhibition of exhibitions">
+
+            <div *ngIf="exhibition.exhibited_works > 0">
+                <div *ngFor="let info of exhibition.exhibited_works">
+                    <div class="img-crop">
+                        <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                            <a *ngIf="img.image.length > 0" class="pswp_img_link" href="{{img.image}}"
+                               itemprop="contentUrl"
+                               attr.data-size="{{img.image_size.width}}x{{img.image_size.height}}">
+                                <img src="{{img.image}}" itemprop="thumbnail"
+                                     alt="Colorful Feldberg II (STEFFEN EGLY)"/>
+                            </a>
+                            <a *ngIf="img.image.length <= 0" class="pswp_img_link"
+                               href="{{exhibition.exhibition_cover.image}}"
+                               itemprop="contentUrl"
+                               attr.data-size="{{exhibition.exhibition_cover.image_size.width}}x{{exhibition.exhibition_cover.image_size.height}}">
+                                <img src="{{exhibition.exhibition_cover.image}}"
+                                     itemprop="thumbnail" alt="Colorful Feldberg II (STEFFEN EGLY)"/>
+                            </a>
+                            <figcaption itemprop="caption description">
+                                {{img.image_desc}}
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="caption">
+                        <div>
+                        <span> <a style="color: black;" (click)="runFacebook(i+1)" href=""><i
+                                class="fa fa-facebook"></i></a><share-container
+                                direction="horizontal"
+                                [textEnabled]="false"
+                                [expandable]="false"
+                                [properties]="{
+                                        title: img.image_desc,
+                                        description: img.image_desc,
+                                        image: img.image,
+                                        via: ''
+                                        }"
+                                [platforms]="['twitter','pinterest']">
+                    </share-container>  </span>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div *ngIf="exhibition.exhibited_works <= 0">
+                <div class="img-crop">
+                    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                        <a  class="pswp_img_link"
+                           href="{{exhibition.exhibition_cover.image}}"
+                           itemprop="contentUrl"
+                           attr.data-size="{{exhibition.exhibition_cover.image_size.width}}x{{exhibition.exhibition_cover.image_size.height}}">
+                            <img src="http://oloart.olomedia.com/services/image.php/thumb.jpg?format=high&image=201706081117570.newskatharinamaderthaner001.jpg"
+                                 itemprop="thumbnail" alt="Colorful Feldberg II (STEFFEN EGLY)"/>
+                        </a>
+                        <figcaption itemprop="caption description">
+                            {{img.image_desc}}
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+        <div class="item third">
+        </div>
+    </div>
+</main>
+
+
+<footer>powered by <a>olomedia</a></footer>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element, as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+        <!-- don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <!-- <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button> -->
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

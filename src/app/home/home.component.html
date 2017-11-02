@@ -1,0 +1,29 @@
+<div class="main">
+    <ul id="cbp-bislideshow" class="cbp-bislideshow">
+        <li #swiper *ngFor="let image of images">
+                <img width=100%; height=100%;
+                 src="{{image.url}}"
+                 alt="{{image.description}}"/>
+            <div class="home-title-img" [innerHTML]="image.description"></div>
+        </li>
+    </ul>
+</div>
+<style>
+    #cbp-bislideshow{
+        list-style: none;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        padding: 0;
+        margin: 0;
+    }
+    li{
+        position: absolute;
+        height: 100%;
+        width:100%;
+        opacity: 0;
+    }
+</style>

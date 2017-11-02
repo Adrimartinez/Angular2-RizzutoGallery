@@ -1,0 +1,32 @@
+<div class="main-container">
+    <div class="page-container">
+        <main>
+            <div class="view-cont">
+                <div class="item first" *ngFor="let new of news">
+                    <div class="toggle-btn">=</div>
+                    <div class="fixed-sidebar">
+                        <h2 [innerHTML]="new.title"></h2>
+                        <span>{{new.exhibition_cover.start}}/{{new.exhibition_cover.end}}</span>
+                        <div class="side-menu">
+                            <ul>
+                                <li><a routerLinkActive="active" routerLink="/{{lang}}/new/detail/{{new.id}}">exhibition's
+                                    cover</a></li>
+                                <li><a routerLinkActive="active" routerLink="/{{lang}}/new/view/{{new.id}}">installation
+                                    views</a></li>
+                                <li><a routerLinkActive="active" routerLink="/{{lang}}/new/works/{{new.id}}">exhibited
+                                    works</a></li>
+                                <li><a routerLinkActive="active" routerLink="/{{lang}}/new/release/{{new.id}}">press
+                                    release</a></li>
+                                <li><a routerLinkActive="active"
+                                       routerLink="/{{lang}}/artist/detail/{{new.artists[0].id}}">artist page</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <router-outlet></router-outlet>
+                <div class="item third">
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
